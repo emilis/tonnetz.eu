@@ -6,14 +6,24 @@
     <title>Harmonorasi</title>
     <style type="text/css">
 
+html {
+
+    margin:                 0;
+    padding:                0;
+    position:               relative;
+}
+
 body {
 
     background-color:       #111;
     color:                  #eee;
     font-family:            serif;
     font-size:              100%;
-    height:                 100%;
     line-height:            1.6;
+    /*
+    margin:                 0;
+    padding:                0;
+    */
 }
 
 a {
@@ -36,7 +46,8 @@ h1 {
     font-size:              200%;
 }
 
-input[type=checkbox] {
+input[type=checkbox],
+input[type=radio] {
 
     display:                none;
 }
@@ -55,7 +66,22 @@ li:last-child {
     margin-bottom:          0;
 }
 
-/*- Main menu --------------------------------------------------------------- */
+/*- Background -------------------------------------------------------------- */
+
+#background {
+
+    background-color:       #111;
+    bottom:                 0;
+    content:                '';
+    display:                block;
+    left:                   0;
+    position:               absolute;
+    right:                  0;
+    top:                    0;
+    z-index:                -3;
+}
+
+/*- Menu button ------------------------------------------------------------- */
 
 #menu-button {
 
@@ -86,11 +112,6 @@ li:last-child {
     background-color:       #9cf;
 }
 
-input#ui-menu:checked ~ #menu-button {
-
-    background-color:       transparent;
-    color:                  #69c;
-}
 input#ui-menu:checked ~ #menu-button > .closed {
 
     display:                none;
@@ -99,18 +120,17 @@ input#ui-menu:checked ~ #menu-button > .opened {
 
     display:                inline;
 }
-input#ui-menu:checked ~ #menu-button:hover {
 
-    color:                  #9cf;
-}
+/*- Main menu --------------------------------------------------------------- */
 
 #menu {
 
     background-color:       rgba( 0, 0, 0, 0.9 );
-    border-radius:          1em;
+    border-radius:          0 0 0 1em;
+    box-sizing:             border-box;
     display:                none;
     font-family:            sans-serif;
-    font-size:              100%;
+    max-width:              80%;
     padding:                1em 2em;
     position:               absolute;
     right:                  0;
@@ -124,14 +144,14 @@ input#ui-menu:checked ~ #menu {
     display:                block;
 }
 
-#menu > .toggle-interval {
+#menu > label {
 
     display:                block;
     color:                  #9cf;
     padding:                0.5em 0;
 }
 
-#menu > .toggle-interval::before {
+#menu > label::before {
 
     content:                '❌';
     display:                inline-block;
@@ -139,11 +159,13 @@ input#ui-menu:checked ~ #menu {
     position:               relative;
 }
 
-#menu > .toggle-interval:hover {
+#menu > label:hover {
 
     background-color:       #123;
 }
 
+input#theme-default:checked ~ #menu > .for-theme-default,
+input#theme-bow:checked ~ #menu > .for-theme-bow,
 input#i-p4:checked ~ #menu > .toggle-interval.for-i-p4,
 input#i-ma2:checked ~ #menu > .toggle-interval.for-i-ma2,
 input#i-ma6:checked ~ #menu > .toggle-interval.for-i-ma6,
@@ -154,6 +176,8 @@ input#i-tri:checked ~ #menu > .toggle-interval.for-i-tri {
 
     font-weight:            bold;
 }
+input#theme-default:checked ~ #menu > .for-theme-default::before,
+input#theme-bow:checked ~ #menu > .for-theme-bow::before,
 input#i-p4:checked ~ #menu > .toggle-interval.for-i-p4::before,
 input#i-ma2:checked ~ #menu > .toggle-interval.for-i-ma2::before,
 input#i-ma6:checked ~ #menu > .toggle-interval.for-i-ma6::before,
@@ -422,10 +446,96 @@ input#i-tri:checked ~ main > .block > .column > .int.i-tri {
     visibility:             visible;
 }
 
+/*- Themes ------------------------------------------------------------------ */
+
+input#theme-bow:checked ~ #background {
+
+    background-color:       white;
+}
+input#theme-bow:checked ~ #menu-button {
+
+    background-color:       #ccc;
+}
+input#theme-bow:checked ~ #menu {
+
+    background-color:       #eee;
+    color:                  #222;
+}
+input#theme-bow:checked ~ #menu a,
+input#theme-bow:checked ~ #menu > label {
+
+    color:                  #036;
+}
+input#theme-bow:checked ~ #menu a:hover,
+input#theme-bow:checked ~ #menu > label:hover {
+
+    background-color:       #ccc;
+}
+input#theme-bow:checked ~ main > .block > .column > label {
+
+    color:                  #333;
+    border-color:           #666;
+}
+input#theme-bow:checked ~ main > .block > .column > label:hover {
+
+    box-shadow:             0 0 6px black;
+}
+input#theme-bow:checked ~ main > .block > .column > .int {
+
+    background-color:       #666;
+}
+input#theme-bow:checked ~ main > .block > .column > .int.i-tri {
+
+    background-color:       transparent;
+    border-color:           #666;
+}
+
+/*- Printing ---------------------------------------------------------------- */
+
+@media print {
+    @page {
+
+        margin:             0;
+    }
+    body {
+
+        font-size:          5pt;
+        line-height:        1;
+    }
+    #background,
+    #menu-button,
+    #menu,
+    .int {
+
+        display:            none !important;
+    }
+    main > .block > .column {
+
+        margin-right:       20pt !important;
+    }
+    main > .block > .column:nth-child(2) {  margin-top: 30pt; }
+    main > .block > .column:nth-child(3) {  margin-top: 60pt; }
+    main > .block > .column:nth-child(4) {  margin-top: 20pt; }
+    main > .block > .column:nth-child(5) {  margin-top: 50pt; }
+    main > .block > .column:nth-child(6) {  margin-top: 10pt; }
+    main > .block > .column:nth-child(7) {  margin-top: 40pt; }
+
+    main > .block > .column > label {
+
+        border:             1pt solid #666 !important;
+        height:             20pt !important;
+        line-height:        20pt !important;
+        margin-bottom:      50pt !important;
+        width:              20pt !important;
+    }
+}
+
     </style>
 </head>
 <body>
     <input type="checkbox" id="ui-menu" checked>
+    <input type="radio" name="theme" id="theme-default" checked>
+    <input type="radio" name="theme" id="theme-bow">
     <input type="checkbox" id="i-p4" checked>
     <input type="checkbox" id="i-ma2" checked>
     <input type="checkbox" id="i-ma6" checked>
@@ -433,6 +543,7 @@ input#i-tri:checked ~ main > .block > .column > .int.i-tri {
     <input type="checkbox" id="i-ma3" checked>
     <input type="checkbox" id="i-ma7" checked>
     <input type="checkbox" id="i-tri" checked>
+    <div id="background"></div>
     <label id="menu-button" for="ui-menu">
         <span class="opened">X</span>
         <span class="closed">Menu</span>
@@ -454,6 +565,10 @@ input#i-tri:checked ~ main > .block > .column > .int.i-tri {
             <li>Find the largest chord without dissonant intervals.</li>
             <li>Highlight a major scale (show only P5, M3 & m3 intervals). Highlight other scales.</li>
             <li>Find roots of chords. Find chords with multiple roots. Find chords without roots.</li>
+        </ul>
+        <h3>Learn more</h3>
+        <ul>
+            <li><a href="https://en.wikipedia.org/wiki/Tonnetz">Wikipedia: Tonnetz</a></li>
         </ul>
         <h2>Show/hide intervals:</h2>
         <label class="toggle-interval for-i-p4" for="i-p4">
@@ -477,10 +592,13 @@ input#i-tri:checked ~ main > .block > .column > .int.i-tri {
         <label class="toggle-interval for-i-mi2" for="i-mi2">
             m2 (M7): minor 2nd (major 7th)
         </label>
-        <h2>Learn more</h2>
-        <ul>
-            <li><a href="https://en.wikipedia.org/wiki/Tonnetz">Wikipedia: Tonnetz</a></li>
-        </ul>
+        <h2>Color scheme:</h2>
+        <label class="change-theme for-theme-default" for="theme-default">
+            Colors on black (default)
+        </label>
+        <label class="change-theme for-theme-bow" for="theme-bow">
+            Black on white
+        </label>
     </aside>
     <main>
         <input type="checkbox" id="c-a">
