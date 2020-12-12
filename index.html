@@ -2,48 +2,141 @@
 <html lang="en">
 <!-- (c) Emilis Dambauskas 2020 https://git.sr.ht/~emilis/tonnetz-page -->
 <head>
-    <title>The Key to Harmony</title>
+    <meta charset="utf8">
+    <title>Harmonorama</title>
     <style type="text/css">
 
 body {
 
     background-color:       #111;
-    color:                  lime;
+    color:                  #eee;
     font-family:            serif;
+    font-size:              100%;
     height:                 100%;
 }
 
-header {
+input[type=checkbox] {
 
+    display:                none;
+}
+
+label {
+
+    cursor:                 pointer;
+}
+
+/*- Main menu --------------------------------------------------------------- */
+
+#menu-button {
+
+    background-color:       #69c;
+    border-radius:          0 0 0 0.25em;
+    color:                  black;
     display:                block;
-    left:                   0;
-    position:               fixed;
+    font-family:            sans-serif;
+    font-size:              200%;
+    font-weight:            bold;
+    padding:                1em;
+    position:               absolute;
     right:                  0;
     text-align:             center;
     top:                    0;
+    z-index:                3;
+}
+#menu-button > .closed {
+
+    display:                inline;
+}
+#menu-button > .opened {
+
+    display:                none;
+}
+
+input#ui-menu:checked ~ #menu-button {
+
+    background-color:       transparent;
+    color:                  #69c;
+}
+input#ui-menu:checked ~ #menu-button > .closed {
+
+    display:                none;
+}
+input#ui-menu:checked ~ #menu-button > .opened {
+
+    display:                inline;
+}
+
+#menu {
+
+    background-color:       rgba( 0, 0, 0, 0.9 );
+    border-radius:          1em;
+    display:                none;
+    font-family:            sans-serif;
+    font-size:              100%;
+    padding:                1em 2em;
+    position:               absolute;
+    right:                  0;
+    top:                    0;
+    width:                  32em;
     z-index:                2;
 }
 
-header > h1 {
+input#ui-menu:checked ~ #menu {
 
-    border-radius:          1em;
-    display:                inline-block;
-    background-color:       rgba( 0, 0, 0, 0.7 );
-    padding:                1em;
+    display:                block;
 }
+
+#menu > .toggle-interval {
+
+    display:                block;
+    color:                  #9cf;
+    padding:                0.5em;
+}
+
+#menu > .toggle-interval::before {
+
+    content:                '❌';
+    display:                inline-block;
+    margin-right:           0.5em;
+    position:               relative;
+}
+
+#menu > .toggle-interval:hover {
+
+    text-decoration:        underline;
+}
+
+input#i-p4:checked ~ #menu > .toggle-interval.for-i-p4,
+input#i-ma2:checked ~ #menu > .toggle-interval.for-i-ma2,
+input#i-ma6:checked ~ #menu > .toggle-interval.for-i-ma6,
+input#i-mi2:checked ~ #menu > .toggle-interval.for-i-mi2,
+input#i-ma3:checked ~ #menu > .toggle-interval.for-i-ma3,
+input#i-ma7:checked ~ #menu > .toggle-interval.for-i-ma7,
+input#i-tri:checked ~ #menu > .toggle-interval.for-i-tri {
+
+    font-weight:            bold;
+}
+input#i-p4:checked ~ #menu > .toggle-interval.for-i-p4::before,
+input#i-ma2:checked ~ #menu > .toggle-interval.for-i-ma2::before,
+input#i-ma6:checked ~ #menu > .toggle-interval.for-i-ma6::before,
+input#i-mi2:checked ~ #menu > .toggle-interval.for-i-mi2::before,
+input#i-ma3:checked ~ #menu > .toggle-interval.for-i-ma3::before,
+input#i-ma7:checked ~ #menu > .toggle-interval.for-i-ma7::before,
+input#i-tri:checked ~ #menu > .toggle-interval.for-i-tri::before {
+
+    content:                '👁️';
+}
+
+/*- Circles ----------------------------------------------------------------- */
 
 main {
 
     display:                flex;
     flex-direction:         row;
     height:                 100%;
+    margin-top:             -9em;
     width:                  100%;
     overflow:               hidden;
-}
-
-main > input {
-
-    display:                none;
 }
 
 .block {
@@ -132,6 +225,7 @@ input#c-gs:checked  ~ .block > .column > label.gs {
     opacity:                0.4;
     padding:                0;
     position:               relative;
+    visibility:             hidden;
     width:                  6px;
     z-index:                -2;
 }
@@ -164,7 +258,6 @@ input#c-gs:checked  ~ .block > .column > label.gs {
 .int.i-mi2 {
 
     background-color:       #f00;
-    display:                none !important;
     height:                 6.3em;
     margin-bottom:          -6.3em;
     transform:              translate(4.9em, -2.7em) rotate(-98deg);
@@ -280,12 +373,73 @@ div.css-placeholder {
     display:                block;
 }
 
+input#i-p4:checked ~ main > .block > .column > .int.i-p4,
+input#i-ma2:checked ~ main > .block > .column > .int.i-ma2,
+input#i-ma6:checked ~ main > .block > .column > .int.i-ma6,
+input#i-mi2:checked ~ main > .block > .column > .int.i-mi2,
+input#i-ma3:checked ~ main > .block > .column > .int.i-ma3,
+input#i-ma7:checked ~ main > .block > .column > .int.i-ma7,
+input#i-tri:checked ~ main > .block > .column > .int.i-tri {
+
+    visibility:             visible;
+}
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>The Key to Harmony</h1>
-    </header>
+    <input type="checkbox" id="ui-menu" checked>
+    <input type="checkbox" id="i-p4" checked>
+    <input type="checkbox" id="i-ma2" checked>
+    <input type="checkbox" id="i-ma6" checked>
+    <input type="checkbox" id="i-mi2">
+    <input type="checkbox" id="i-ma3" checked>
+    <input type="checkbox" id="i-ma7" checked>
+    <input type="checkbox" id="i-tri" checked>
+    <label id="menu-button" for="ui-menu">
+        <span class="opened">X</span>
+        <span class="closed">Menu</span>
+    </label>
+    <aside id="menu">
+        <h1>Harmonorama</h1>
+        <p>A tool to see harmonic relationships.</p>
+        <p>The circles represent pitches.</p>
+        <p>Click on the pitches to highlight them and see the intervals between them.</p>
+        <h3>Try these out:</h3>
+        <ul>
+            <li>A major chord: <strong>C-E-G</strong></li>
+            <li>A minor chord: <strong>A-E-C</strong></li>
+            <li>A suspended chord: <strong>F-C-G</strong></li>
+            <li>A major 7th chord: <strong>C-E-G-B</strong></li>
+            <li>A minor 7th chord: <strong>A-C-E-G</strong></li>
+        </ul>
+        <h3>Some excercises:</h3>
+        <ul>
+            <li>Find the largest chord without dissonant intervals.</li>
+            <li>Show only P5, M3 & m3 intervals. Highlight a major scale.</li>
+        </ul>
+        <h2>Show/hide intervals:</h2>
+        <label class="toggle-interval for-i-p4" for="i-p4">
+            P5 & P4: perfect 5th and perfect 4th,
+        </label>
+        <label class="toggle-interval for-i-ma3" for="i-ma3">
+            M3 & m6: major 3rd and minor 6th,
+        </label>
+        <label class="toggle-interval for-i-ma6" for="i-ma6">
+            m3 & M6: minor 3rd and major 6th,
+        </label>
+        <label class="toggle-interval for-i-ma2" for="i-ma2">
+            m7 (M2): minor 7th (major 2nd),
+        </label>
+        <label class="toggle-interval for-i-ma7" for="i-ma7">
+            M7 (m2): major 7th (minor 2nd),
+        </label>
+        <label class="toggle-interval for-i-tri" for="i-tri">
+            tritone,
+        </label>
+        <label class="toggle-interval for-i-mi2" for="i-mi2">
+            m2 (M7): minor 2nd (major 7th).
+        </label>
+    </aside>
     <main>
         <input type="checkbox" id="c-a">
         <input type="checkbox" id="c-as">
