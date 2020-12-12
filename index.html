@@ -3,7 +3,7 @@
 <!-- (c) Emilis Dambauskas 2020 https://git.sr.ht/~emilis/tonnetz-page -->
 <head>
     <meta charset="utf8">
-    <title>Harmonorama</title>
+    <title>Harmonorasi</title>
     <style type="text/css">
 
 body {
@@ -13,6 +13,18 @@ body {
     font-family:            serif;
     font-size:              100%;
     height:                 100%;
+    line-height:            1.6;
+}
+
+a {
+
+    color:                  #69c;
+    display:                block;
+    padding:                0.25em 0;
+}
+a:hover {
+
+    background-color:       #123;
 }
 
 input[type=checkbox] {
@@ -23,6 +35,15 @@ input[type=checkbox] {
 label {
 
     cursor:                 pointer;
+}
+
+li {
+
+    margin-bottom:          0.4em;
+}
+li:last-child {
+
+    margin-bottom:          0;
 }
 
 /*- Main menu --------------------------------------------------------------- */
@@ -90,7 +111,7 @@ input#ui-menu:checked ~ #menu {
 
     display:                block;
     color:                  #9cf;
-    padding:                0.5em;
+    padding:                0.5em 0;
 }
 
 #menu > .toggle-interval::before {
@@ -103,7 +124,7 @@ input#ui-menu:checked ~ #menu {
 
 #menu > .toggle-interval:hover {
 
-    text-decoration:        underline;
+    background-color:       #123;
 }
 
 input#i-p4:checked ~ #menu > .toggle-interval.for-i-p4,
@@ -400,10 +421,9 @@ input#i-tri:checked ~ main > .block > .column > .int.i-tri {
         <span class="closed">Menu</span>
     </label>
     <aside id="menu">
-        <h1>Harmonorama</h1>
-        <p>A tool to see harmonic relationships.</p>
-        <p>The circles represent pitches.</p>
-        <p>Click on the pitches to highlight them and see the intervals between them.</p>
+        <h1>Harmonorasi</h1>
+        <p>A tool to see harmonic relationships between musical pitch classes.</p>
+        <p>Click on the circles to highlight them and see the intervals.</p>
         <h3>Try these out:</h3>
         <ul>
             <li>A major chord: <strong>C-E-G</strong></li>
@@ -412,33 +432,38 @@ input#i-tri:checked ~ main > .block > .column > .int.i-tri {
             <li>A major 7th chord: <strong>C-E-G-B</strong></li>
             <li>A minor 7th chord: <strong>A-C-E-G</strong></li>
         </ul>
-        <h3>Some excercises:</h3>
+        <h3>Further excercises:</h3>
         <ul>
             <li>Find the largest chord without dissonant intervals.</li>
-            <li>Show only P5, M3 & m3 intervals. Highlight a major scale.</li>
+            <li>Highlight a major scale (show only P5, M3 & m3 intervals). Highlight other scales.</li>
+            <li>Find roots of chords. Find chords with multiple roots. Find chords without roots.</li>
         </ul>
         <h2>Show/hide intervals:</h2>
         <label class="toggle-interval for-i-p4" for="i-p4">
-            P5 & P4: perfect 5th and perfect 4th,
+            P5 & P4: perfect 5th and perfect 4th
         </label>
         <label class="toggle-interval for-i-ma3" for="i-ma3">
-            M3 & m6: major 3rd and minor 6th,
+            M3 & m6: major 3rd and minor 6th
         </label>
         <label class="toggle-interval for-i-ma6" for="i-ma6">
-            m3 & M6: minor 3rd and major 6th,
+            m3 & M6: minor 3rd and major 6th
         </label>
         <label class="toggle-interval for-i-ma2" for="i-ma2">
-            m7 (M2): minor 7th (major 2nd),
+            m7 (M2): minor 7th (major 2nd)
         </label>
         <label class="toggle-interval for-i-ma7" for="i-ma7">
-            M7 (m2): major 7th (minor 2nd),
+            M7 (m2): major 7th (minor 2nd)
         </label>
         <label class="toggle-interval for-i-tri" for="i-tri">
-            tritone,
+            tritone
         </label>
         <label class="toggle-interval for-i-mi2" for="i-mi2">
-            m2 (M7): minor 2nd (major 7th).
+            m2 (M7): minor 2nd (major 7th)
         </label>
+        <h2>Links</h2>
+        <ul>
+            <li><a href="https://en.wikipedia.org/wiki/Tonnetz">Tonnetz</a></li>
+        </ul>
     </aside>
     <main>
         <input type="checkbox" id="c-a">
