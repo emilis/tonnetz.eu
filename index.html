@@ -163,6 +163,7 @@ input#ui-menu:checked ~ #menu {
 
 input#theme-default:checked ~ #menu > .for-theme-default,
 input#theme-bow:checked ~ #menu > .for-theme-bow,
+input#theme-wob:checked ~ #menu > .for-theme-wob,
 input#i-p4:checked ~ #menu > .toggle-interval.for-i-p4,
 input#i-ma2:checked ~ #menu > .toggle-interval.for-i-ma2,
 input#i-ma6:checked ~ #menu > .toggle-interval.for-i-ma6,
@@ -175,6 +176,7 @@ input#i-tri:checked ~ #menu > .toggle-interval.for-i-tri {
 }
 input#theme-default:checked ~ #menu > .for-theme-default::before,
 input#theme-bow:checked ~ #menu > .for-theme-bow::before,
+input#theme-wob:checked ~ #menu > .for-theme-wob::before,
 input#i-p4:checked ~ #menu > .toggle-interval.for-i-p4::before,
 input#i-ma2:checked ~ #menu > .toggle-interval.for-i-ma2::before,
 input#i-ma6:checked ~ #menu > .toggle-interval.for-i-ma6::before,
@@ -444,6 +446,7 @@ input#i-tri:checked ~ main > .block > .column > .int.i-tri {
 }
 
 /*- Themes ------------------------------------------------------------------ */
+/*- black-on-white ---------------------------------------------------------- */
 
 input#theme-bow:checked ~ #background {
 
@@ -485,6 +488,27 @@ input#theme-bow:checked ~ main > .block > .column > .int.i-tri {
 
     background-color:       transparent;
     border-color:           #666;
+}
+
+/*- white-on-black ---------------------------------------------------------- */
+
+input#theme-wob:checked ~ #background {
+
+    background-color:       #000;
+}
+input#theme-wob:checked ~ main > .block > .column > label {
+
+    color:                  #fff;
+    border-color:           #555;
+}
+input#theme-wob:checked ~ main > .block > .column > .int {
+
+    background-color:       #fff;
+}
+input#theme-wob:checked ~ main > .block > .column > .int.i-tri {
+
+    background-color:       transparent;
+    border-color:           #fff;
 }
 
 /*- Printing ---------------------------------------------------------------- */
@@ -533,6 +557,7 @@ input#theme-bow:checked ~ main > .block > .column > .int.i-tri {
     <input type="checkbox" id="ui-menu" checked>
     <input type="radio" name="theme" id="theme-default" checked>
     <input type="radio" name="theme" id="theme-bow">
+    <input type="radio" name="theme" id="theme-wob">
     <input type="checkbox" id="i-p4" checked>
     <input type="checkbox" id="i-ma2" checked>
     <input type="checkbox" id="i-ma6" checked>
@@ -592,6 +617,9 @@ input#theme-bow:checked ~ main > .block > .column > .int.i-tri {
         <h2>Color scheme:</h2>
         <label class="change-theme for-theme-default" for="theme-default">
             Colors on black (default)
+        </label>
+        <label class="change-theme for-theme-wob" for="theme-wob">
+            White on black
         </label>
         <label class="change-theme for-theme-bow" for="theme-bow">
             Black on white
