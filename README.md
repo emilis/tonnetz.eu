@@ -6,6 +6,6 @@ No JavaScript necessary.
 
 ## License
 
-Copyright 2020 – 2021 Emilis Dambauskas emilis@emilis.net
+Copyright 2020 – 2023 Emilis Dambauskas dev@emilis.net.
 
 This is free software, and you are welcome to redistribute it under certain conditions; see LICENSE.txt for details.
