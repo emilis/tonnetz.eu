@@ -4,4 +4,4 @@ default:
 
 .PHONY: deploy
 deploy:
-	scp index.html tilde.town:public_html/
+	scp index.html tilde.town:public_html/tonnetz.eu/
